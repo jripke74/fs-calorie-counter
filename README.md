@@ -283,5 +283,104 @@ This will return a NodeList of all the text inputs in the form. You can then acc
 Step 46
 Now you need to build your dynamic HTML string to add to the webpage. Declare a new HTMLString variable, and assign it an empty template literal string.
 
-Step 47 Passed
+Step 47
 Inside your template literal, create a label element and give it the text Entry # Name. Using your template literal syntax, replace # with the value of entryNumber.
+
+Step 48
+Give your label element a for attribute with the value X-#-name, where X is the value of the entryDropdown element and # is the value of entryNumber. Remember that HTML attributes should be wrapped in double quotes.
+
+Step 49
+After your label element, and on a new line in your template string, create an input element. Give it a type attribute set to text, a placeholder attribute set to Name, and an id attribute that matches the for attribute of your label element.
+
+Step 50
+Create another label element (on a new line) at the end of your HTMLString. This label should have the text Entry # Calories, using your template literal syntax to replace # with the value of entryNumber, and the for attribute set to X-#-calories, where X is the value of entryDropdown and # is the value of entryNumber.
+
+Step 51
+Finally, on a new line after your second label, create another input element. Give this one a type attribute set to number, a min attribute set to 0 (to ensure negative calories cannot be added), a placeholder attribute set to Calories, and an id attribute that matches the for attribute of your second label element.
+
+Step 52
+To see your new HTML content for the targetInputContainer, you will need to use the innerHTML property.
+
+The innerHTML property sets or returns the HTML content inside an element.
+
+Here is a form element with a label and input element nested inside.
+
+Example Code
+<form id="form">
+  <label for="first-name">First name</label>
+  <input id="first-name" type="text">
+</form>
+If you want to add another label and input element inside the form, then you can use the innerHTML property as shown below:
+
+Example Code
+const formElement = document.getElementById("form");
+const formContent = `
+  <label for="last-name">Last name</label>
+  <input id="last-name" type="text">
+`;
+formElement.innerHTML += formContent;
+Use the addition assignment operator += to append your HTMLString variable to targetInputContainer.innerHTML.
+
+Step 53
+In the Role Playing Game project, you learned how to set a button's behavior by editing its onclick property. You can also edit an element's behavior by adding an event listener.
+
+The following example uses the addEventListener method to add a click event to a button. When the button is clicked, the printName function is called.
+
+Example Code
+<button class="btn">Print name</button>
+Example Code
+const button = document.querySelector('.btn');
+function printName() {
+  console.log("Jessica");
+}
+button.addEventListener('click', printName);
+The addEventListener method takes two arguments. The first is the event to listen to. (Ex. 'click') The second is the callback function, or the function that runs when the event is triggered.
+
+Call the .addEventListener() method on the addEntryButton. Pass in the string "click" for the first argument and the addEntry function for the second argument.
+
+Note that you should not call addEntry, but pass the variable (or function reference) directly.
+
+Step 54
+Try adding a couple of entries to the Breakfast category, and you may notice some bugs! The first thing we need to fix is the entry counts – the first entry should have a count of 1, not 0.
+
+This bug occurs because you are querying for input[type="text"] elements before adding the new entry to the page. To fix this, update your entryNumber variable to be the value of the length of the query plus 1. Add this on your declaration line, not in your template strings.
+
+Step 55
+Your other bug occurs if you add a Breakfast entry, fill it in, then add a second Breakfast entry. You'll see that the values you added disappeared.
+
+This is because you are updating innerHTML directly, which does not preserve your input content. Change your innerHTML assignment to use the insertAdjacentHTML() method of targetInputContainer instead. Do not pass any arguments yet.
+
+Step 56
+The insertAdjacentHtml method takes two arguments. The first argument is a string that specifies the position of the inserted element. The second argument is a string containing the HTML to be inserted.
+
+For the first argument, pass the string "beforeend" to insert the new element as the last child of targetInputContainer.
+
+For the second argument, pass your HTMLString variable.
+
+Step 57
+Great! Now you can add entries without losing your previous inputs.
+
+Your next step is to write a function that will get the calorie counts from the user's entries.
+
+Declare a getCaloriesFromInputs function, and give it a parameter called list.
+
+Step 58
+In your new function, declare a calories variable and assign it the value 0. Use let to declare it, since you will be reassigning it later.
+
+Step 59
+The list parameter is going to be the result of a query selector, which will return a NodeList. A NodeList is a list of elements like an array. It contains the elements that match the query selector. You will need to loop through these elements in the list.
+
+In previous steps, you learned how to loop through an array using a for loop. You can also use a for...of loop to loop through an array and a NodeList.
+
+A for...of loop is used to iterate over elements in an iterable object like an array. The variable declared in the loop represents the current element being iterated over.
+
+Example Code
+for (const element of elementArray) {
+  console.log(element);
+}
+Create a for...of loop that loops through the list. For the loop's variable name, use const to declare a variable called item.
+
+Step 60
+The NodeList values you will pass to list will consist of input elements. So you will want to look at the value attribute of each element.
+
+Assign item.value to a const variable called currVal.
