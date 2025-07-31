@@ -182,3 +182,106 @@ Add this character class before and after e in your pattern.
 
 Step 32
 The + modifier in a regex allows you to match a pattern that occurs one or more times. To match your digit pattern one or more times, add a plus after each of the digit character classes. For example: [0-9]+.
+
+Step 33
+There is a shorthand character class to match any digit: \d. Replace your [0-9] character classes with this shorthand.
+
+Step 34
+Strings have a .match() method, which takes a regex argument. .match() will return an array of match results – containing either the first match, or all matches if the global flag is used.
+
+Example Code
+const str = 'example string';
+const regex = /example/;
+const result = str.match(regex); // Returns ['example']
+Return the result of calling the .match() method on str and passing your regex variable as the argument. You'll use this match result later on.
+
+Step 35
+Now it is time to test your isInvalidInput function. For this test, you want to check if the function can detect scientific notation like 1e3 or 10e2. While this is a valid way to represent numbers, it is not a valid input for your calorie counter project.
+
+Below your isInvalidInput function, add a console statement. Inside that console statement, call the isInvalidInput function with an argument of "1e3".
+
+Open up the console to see the result. In the next step, you will learn more about what that result means.
+
+Step 36
+When you open the console, you should see this result:
+
+Example Code
+[ '1e3', index: 0, input: '1e3', groups: undefined ]
+The match method returns an array with any matches found in the string.
+
+Here is a complete breakdown of that information:
+
+"1e3" is the matched value against the /\d+e\d+/i regex.
+index: 0 is the index of the matched value in the string.
+input: '1e3' is the original string that was matched.
+groups: undefined are the matched groups, which are not used in this case. You will learn more about groups in a later project.
+Now it is time to test for a valid input. Update your console statement to the following: console.log(isInvalidInput("10")).
+
+Open up the console to see the result. You will learn more about what this result means in the next step.
+
+Step 37
+When you open the console, you should see the result of null. The match method returns null when no match is found. In this case, the isInvalidInput function should return null when the input is a valid number without any scientific notation.
+
+null in JavaScript is a special primitive that represents the intentional absence of a value. In a boolean context, null is considered falsy which evaluates to false in a conditional statement.
+
+Now that you have finished testing your isInvalidInput function, you can remove the console.log statement.
+
+Step 38
+Now you need to retrieve the value of entryDropdown.value to get the currently selected option from the dropdown.
+
+Print entryDropdown.value to the console to see its value.
+
+Since entryDropdown.value is in a static context (outside of an event listener), it only shows the value at the moment the code runs. This means it won't automatically update as the user interacts with the dropdown.
+
+It will capture the initial value (in this case, "breakfast") and won't reflect any changes the user makes afterward.
+
+Step 39
+Now that you have finished testing the value of entryDropdown.value, you can remove the console.log statement.
+
+Your next step is to allow users to add entries to the calorie counter. Declare an empty function addEntry. This function should not take any parameters.
+
+Step 40
+You'll need to know which category the entry goes in. Thankfully, you added a dropdown for the user to select a category.
+
+Remember that you queried that dropdown earlier in your JavaScript and assigned it to the entryDropdown variable. You can use the value property to get the value of the selected option.
+
+Use concatenation to add a # to the beginning of the value property of entryDropdown, and assign that result to a targetId variable.
+
+Step 41
+Now you need to target the .input-container element within the element that has your targetId. Declare a new targetInputContainer variable, and assign it the value of document.querySelector(). Use concatenation to separate targetId and '.input-container' with a space, and pass that string to querySelector().
+
+Step 42
+JavaScript has a feature called template literals, which allow you to interpolate variables directly within a string. Template literals are denoted with backticks ``, as opposed to single or double quotes. Variables can be passed in to a template literal by surrounding the variable with ${} – the value of the variable will be inserted into the string.
+
+For example:
+
+Example Code
+const name = "Naomi";
+const templateLiteral = `Hello, my name is ${name}~!`;
+console.log(templateLiteral);
+The console will show the string "Hello, my name is Naomi~!".
+
+Replace your concatenated string in the querySelector with a template literal – be sure to keep the space between your targetId variable and .input-container.
+
+Step 43
+Thanks to template literals, you actually don't need the targetId variable at all. Remove that variable, and update your template literal to replace targetId with entryDropdown.value – remember to add # before that, in the string.
+
+Step 44 Passed
+You will want to number the entries a user adds. To get all of the number inputs, you can use the querySelectorAll() method.
+
+The querySelectorAll() method returns a NodeList of all the elements that match the selector. A NodeList is an array-like object, so you can access the elements using bracket notation.
+
+Declare an entryNumber variable and give it the value of targetInputContainer.querySelectorAll(). You do not need to pass an argument to the query selector yet.
+
+Step 45
+Each entry will have a text input for the entry's name, and a number input for the calories. To get a count of the number of entries, you can query by text inputs.
+
+Pass the string input[type="text"] to the querySelectorAll() method. Remember that you will need to use single quotes for your string, so that you can use double quotes within.
+
+This will return a NodeList of all the text inputs in the form. You can then access the length property of the NodeList to get the number of entries. Do this on the same line.
+
+Step 46
+Now you need to build your dynamic HTML string to add to the webpage. Declare a new HTMLString variable, and assign it an empty template literal string.
+
+Step 47 Passed
+Inside your template literal, create a label element and give it the text Entry # Name. Using your template literal syntax, replace # with the value of entryNumber.
