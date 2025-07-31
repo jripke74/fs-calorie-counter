@@ -384,3 +384,58 @@ Step 60
 The NodeList values you will pass to list will consist of input elements. So you will want to look at the value attribute of each element.
 
 Assign item.value to a const variable called currVal.
+
+Step 61
+Remember that you wrote a function earlier to clean the user's input? You'll need to use that function here.
+
+Update your currVal declaration to be the result of calling cleanInputString with item.value.
+
+Step 62
+You also need to confirm the input is valid. Declare an invalidInputMatch variable, and assign it the result of calling your isInvalidInput function with currVal as the argument.
+
+Step 63
+Remember that your isInvalidInput function returns String.match, which is an array of matches or null if no matches are found.
+
+In JavaScript, values can either be truthy or falsy. A value is truthy if it evaluates to true when converted to a Boolean. A value is falsy if it evaluates to false when converted to a Boolean. null is an example of a falsy value.
+
+You need to check if invalidInputMatch is truthy – you can do this by passing the variable directly to your if condition (without a comparison operator). Here's an example of checking the truthiness of helloWorld.
+
+Example Code
+if (helloWorld) {
+
+}
+Add an if statement that checks if invalidInputMatch is truthy.
+
+Step 64
+Browsers have a built in alert() function, which you can use to display a pop-up message to the user. The message to display is passed as the argument to the alert() function.
+
+Using a template literal, in your if block, call the alert() function to tell the user "Invalid Input: ", followed by the first value in the invalidInputMatch array.
+
+Step 65
+In programming, null is meant to represent the absence of a value. In this case, if the user enters an invalid input, you want to alert them and then return null to indicate that the function has failed.
+
+Still within your if block, set isError to true and return null.
+
+Step 66
+Remember that return ends the execution of a function. After your if block, you need to handle the logic for when the input is valid. Because your if statement returns a value, you do not need an else statement.
+
+Use the addition assignment operator to add currVal to your calories total. You'll need to use the Number constructor to convert currVal to a number.
+
+The Number constructor is a function that converts a value to a number. If the value cannot be converted, it returns NaN which stands for "Not a Number".
+
+Here is an example:
+
+Example Code
+Number('10'); // returns the number 10
+Number('abc'); // returns NaN
+
+Step 67
+After your for loop has completed, return the calories value.
+
+Step 68
+Now it's time to start putting it all together. Declare an empty calculateCalories function, which takes a parameter named e. This function will be another event listener, so the first argument passed will be the browser event – e is a common name for this parameter.
+
+Step 69
+You will be attaching this function to the submit event of the form. The submit event is triggered when the form is submitted. The default action of the submit event is to reload the page. You need to prevent this default action using the preventDefault() method of your e parameter.
+
+Add a line to your calculateCalories function that calls the preventDefault() method on the e parameter. Then, reset your global error flag isError to false.
