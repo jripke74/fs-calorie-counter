@@ -485,3 +485,55 @@ Declare a surplusOrDeficit variable. Then use a ternary operator to set surplusO
 
 Step 81
 You need to construct the HTML string that will be displayed in the output element. Start by assigning an empty template literal to the innerHTML property of the output element on a new line at the end of the function.
+
+Step 82
+When you need to lower case a string, you can use the toLowerCase() method. This method returns the calling string value converted to lower case.
+
+Example Code
+const firstName = 'JESSICA';
+console.log(firstName.toLowerCase()); // Output: jessica
+Your output.innerHTML string will need a span element. Create that, and give it a class attribute set to the surplusOrDeficit variable. Your surplusOrDeficit variable should be converted to lower case using the toLowerCase() method.
+
+Do not give your span any text yet.
+
+Step 83
+Give your span the text remainingCalories Calorie surplusOrDeficit, using interpolation to replace remainingCalories and surplusOrDeficit with the appropriate variables.
+
+Step 84
+When the user has a calorie surplus, the remainingCalories value will be negative. You don't want to display a negative number in the result string.
+
+Math.abs() is a built-in JavaScript method that will return the absolute value of a number.
+
+Example Code
+const num = -5;
+Math.abs(num); // 5
+In your span text, wrap your remainingCalories reference in Math.abs() to ensure that the value is positive.
+
+Step 85
+After your span element, add an hr element to create a horizontal line.
+
+To keep your code clean and readable, you should add this on a new line in the template literal.
+
+Step 86
+Now create a p element with the text budgetCalories Calories Budgeted, using interpolation to replace budgetCalories with the appropriate variable.
+
+This should come after your hr element.
+
+Step 87
+Using the same interpolation syntax, add a second p element with the text consumedCalories Calories Consumed and a third with the text exerciseCalories Calories Burned. Remember to replace your consumedCalories and exerciseCalories variables with the appropriate values.
+
+Step 88
+Finally, you need to make the #output element visible so the user can see your text. Your output variable is an Element, which has a classList property. This property has a .remove() method, which accepts a string representing the class to remove from the element.
+
+Example Code
+const paragraphElement = document.getElementById('paragraph');
+paragraphElement.classList.remove('hide');
+Use the .remove() method of the output variable's classList property to remove the hide class. Don't forget to place the word hide inside quotes.
+
+Step 89
+If you click on your Calculate Remaining Calories button, you'll see that nothing happens. You still need to mount the event listener.
+
+Add an event listener to your calorieCounter element. The event type should be submit, and the callback function should be calculateCalories.
+
+Step 90
+Your final feature to add is the ability for a user to clear the form. Start by declaring an empty function called clearForm – it should not take any arguments.
