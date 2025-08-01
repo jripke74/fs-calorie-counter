@@ -537,3 +537,46 @@ Add an event listener to your calorieCounter element. The event type should be s
 
 Step 90
 Your final feature to add is the ability for a user to clear the form. Start by declaring an empty function called clearForm – it should not take any arguments.
+
+Step 91
+You need to get all of the input containers. Declare an inputContainers variable, and assign it to the value of querying the document for all elements with the class input-container.
+
+Step 92
+Remember that document.querySelectorAll returns a NodeList, which is array-like but is not an array. However, the Array object has a .from() method that accepts an array-like and returns an array. This is helpful when you want access to more robust array methods, which you will learn about in a future project.
+
+The following example takes a NodeList of li elements and converts it to an array of li elements:
+
+Example Code
+<ul>
+  <li>List 1</li>
+  <li>List 2</li>
+  <li>List 3</li>
+</ul>
+Example Code
+const listItemsArray = Array.from(document.querySelectorAll('li'));
+
+console.log(listItemsArray); //Output: (3) [li, li, li]
+Wrap your inputContainers query selector in Array.from(). Do this on the same line as your declaration.
+
+Step 93
+It is time for another loop. Create a for...of loop with a variable called container to iterate through the inputContainers array.
+
+Inside the loop, set the innerHTML property of the container to an empty string. This will clear all of the contents of that input container.
+
+Step 94
+After your loop completes, you need to clear the budgetNumberInput. Set the value property of budgetNumberInput to an empty string.
+
+Step 95
+You also need to clear the output element's text. You can do this by setting the innerText property to an empty string.
+
+The difference between innerText and innerHTML is that innerText will not render HTML elements, but will display the tags and content as raw text.
+
+Step 96
+To finish off this function, you need to restore the hide class to the output element. The classList property has an .add() method which is the opposite of the .remove() method. It accepts a string representing the class to add to the element.
+
+Add the hide class to your output.
+
+Step 97
+To complete this workshop, add an event listener to the clearButton button. When the button is clicked, it should call the clearForm function.
+
+Congratulations! Your project is complete.
